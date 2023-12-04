@@ -47,11 +47,11 @@ def preProcessing(img):
 # Call preprocessing function
 imgPre = preProcessing(img)
 
-# Find contours in the preprocessed image
+# Find contours in the preprocessed image having minimum area of 2000
 imgContours, conFound = cvzone.findContours(img, imgPre, minArea=2000)
 
     
-# Stack the images for display
+# Stack the images for display 
 imgStacked = cvzone.stackImages([image_copy, img, imgPre, imgContours], 2, 0.5)
 
 # Create a dictionary to store contour areas
@@ -69,7 +69,7 @@ srt = sorted(area.items(), key=lambda x: x[1], reverse=True)
 # Convert the sorted results to a numpy array
 results = np.array(srt).astype("int")
 
-# Count the number of contours with area less than -2000
+# Count the number of contours with area grater than 2000
 num = np.argwhere((results[:, 1]) > 2000).shape[0]
 print("Number of coins is ", num)
 
