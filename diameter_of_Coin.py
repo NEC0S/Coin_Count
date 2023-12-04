@@ -7,7 +7,7 @@ image = cv2.resize(image, (640, 558))
 # Convert the image to grayscale
 gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
-# Apply Gaussian blur to reduce noise
+# Apply median blur to reduce noise
 blurred = cv2.medianBlur(gray,5)
 
 
@@ -36,8 +36,8 @@ if circles is not None:
 
         # Calculate diameter
         diameter = 2 * radius
-        #for 680 pixels we have 10cm so
-        diameter=diameter*(10/680)
+        # for 640 pixels we have 10cm so scale it for coin diameter 
+        diameter=diameter*(10/640)
         # print(f"Diameter of circle: {diameter} cm")
         print(f"Diameter of circle {i + 1}: {diameter:.2f} centimeters")
     # Display the result
